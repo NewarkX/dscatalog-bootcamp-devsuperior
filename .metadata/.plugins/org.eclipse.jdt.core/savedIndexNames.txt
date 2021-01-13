@@ -23,11 +23,14 @@ INDEX VERSION 1.131+C:\Users\User\Desktop\tecnologia\projetos\Spring\ws-bootcamp
 889511769.index
 3993779873.index
 849738890.index
+1735930922.index
 2842528100.index
 709448203.index
 1950233377.index
 2813280517.index
+1381455627.index
 1868968803.index
+3262560829.index
 4159278964.index
 3460260961.index
 1611249291.index
@@ -61,3 +64,4 @@ INDEX VERSION 1.131+C:\Users\User\Desktop\tecnologia\projetos\Spring\ws-bootcamp
 2058217462.index
 3450049096.index
 290037144.index
+446373418.index
