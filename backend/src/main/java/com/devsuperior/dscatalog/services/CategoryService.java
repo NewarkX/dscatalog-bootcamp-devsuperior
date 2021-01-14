@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.devsuperior.dscatalog.dto.CategoryDTO;
 import com.devsuperior.dscatalog.entities.Category;
 import com.devsuperior.dscatalog.repositories.CategoryRepository;
+import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
 
 @Service	
 public class CategoryService {
@@ -42,5 +43,22 @@ public class CategoryService {
 		entity.setName(dto.getName());
 		entity = repository.save(entity);
 		return new CategoryDTO(entity);
+	}
+	
+	//findById ele efetiva o acesso ao banco de dados e traz os dados do objeto
+	//getOne nao toca no banco de dados ele provisiona um objeto provisorio com aquele id so quando for salvar que ele
+	//vai no banco de dados
+	
+	@Transactional
+	public CategoryDTO update(Long id,CategoryDTO dto) {
+		try { 
+			Category entity = repository.getOne(id);
+			entity.setName(dto.getName());
+			entity = repository.save(entity);
+			return new CategoryDTO(entity); 
+		} //se o id nao existir ele vai lancar excecao
+		catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id not found" +id);
+		}
 	}
 }
