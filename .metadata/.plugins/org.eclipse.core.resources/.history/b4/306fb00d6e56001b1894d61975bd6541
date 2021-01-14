@@ -35,12 +35,9 @@ public class CategoryService {
 		Category entity =  obj.orElseThrow(() -> new EntityNotFoundException("Entity not found"));    //caso nao seja achado o categories no obj ele lança a excessao           // obj.get(); passa para o entity o objeto solicitado pelo id
 		return new CategoryDTO(entity); //retorna um objetodto com a entidade
 	}
-	
-	@Transactional(readOnly = true)
+
 	public CategoryDTO insert(CategoryDTO dto) {
-		Category entity = new Category();
-		entity.setName(dto.getName());
-		entity = repository.save(entity);
-		return new CategoryDTO(entity);
+		
+		return null;
 	}
 }
