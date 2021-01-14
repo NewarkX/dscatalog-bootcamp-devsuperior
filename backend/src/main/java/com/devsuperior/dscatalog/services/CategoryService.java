@@ -1,7 +1,10 @@
 package com.devsuperior.dscatalog.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +27,12 @@ public class CategoryService {
 		//stream serve para transformar uma coleção em uma coleção de outro tipo,
 		//o map vai percorrer a lista Category passando todos os objetos para CategoryDTO,e no final
 		//ele retorna uma lista do tipo stream entao e feita a conversao para lista 
+	}
+	
+	@Transactional(readOnly = true)
+	public CategoryDTO findById(Long id) {
+		Optional<Category> obj = repository.findById(id); //retorna um objeto do tipo optional que contem o objeto com id solicitado
+		Category entity =  obj.orElseThrow(() -> new EntityNotFoundException("Entity not found"));    //caso nao seja achado o categories no obj ele lança a excessao           // obj.get(); passa para o entity o objeto solicitado pelo id
+		return new CategoryDTO(entity); //retorna um objetodto com a entidade
 	}
 }
