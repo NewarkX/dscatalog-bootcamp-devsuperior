@@ -12,11 +12,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.devsuperior.dscatalog.dto.CategoryDTO;
 import com.devsuperior.dscatalog.dto.ProductDTO;
-import com.devsuperior.dscatalog.entities.Category;
 import com.devsuperior.dscatalog.entities.Product;
-import com.devsuperior.dscatalog.repositories.CategoryRepository;
 import com.devsuperior.dscatalog.repositories.ProductRepository;
 import com.devsuperior.dscatalog.services.exceptions.DatabaseException;
 import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
@@ -26,9 +23,6 @@ public class ProductService {
 	
 	@Autowired
 	private ProductRepository repository;
-	
-	@Autowired
-	private CategoryRepository categoryRepository;
 	
 	//stream serve para transformar uma coleção em uma coleção de outro tipo,
 	//o map vai percorrer a lista Product passando todos os objetos para ProductDTO,e no final
@@ -48,7 +42,7 @@ public class ProductService {
 		return new ProductDTO(entity,entity.getCategories()); //retorna um objetodto com a entidade
 	}
 	
-	@Transactional
+	@Transactional(readOnly = true)
 	public ProductDTO insert(ProductDTO dto) {
 		Product entity = new Product();
 		copyDtoToEntity(dto,entity);
@@ -60,6 +54,9 @@ public class ProductService {
 	//getOne nao toca no banco de dados ele provisiona um objeto provisorio com aquele id so quando for salvar que ele
 	//vai no banco de dados
 	
+	
+
+
 	@Transactional
 	public ProductDTO update(Long id,ProductDTO dto) {
 		try { 
@@ -92,11 +89,7 @@ public class ProductService {
 		entity.setImgUrl(dto.getImgUrl());
 		entity.setPrice(entity.getPrice());
 		
-		entity.getCategories().clear(); //limpa a lista da entidade
-		for(CategoryDTO catDto : dto.getCategories()) {
-			Category category = categoryRepository.getOne(catDto.getId()); //pega os ids de todos os elementos do dto joga na entidade category sem tocar no banco
-			entity.getCategories().add(category);
-		}
+		
 	}
 
 }

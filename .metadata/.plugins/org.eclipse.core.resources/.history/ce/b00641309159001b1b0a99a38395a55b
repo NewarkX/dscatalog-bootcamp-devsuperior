@@ -48,7 +48,7 @@ public class ProductService {
 		return new ProductDTO(entity,entity.getCategories()); //retorna um objetodto com a entidade
 	}
 	
-	@Transactional
+	@Transactional(readOnly = true)
 	public ProductDTO insert(ProductDTO dto) {
 		Product entity = new Product();
 		copyDtoToEntity(dto,entity);
@@ -60,6 +60,9 @@ public class ProductService {
 	//getOne nao toca no banco de dados ele provisiona um objeto provisorio com aquele id so quando for salvar que ele
 	//vai no banco de dados
 	
+	
+
+
 	@Transactional
 	public ProductDTO update(Long id,ProductDTO dto) {
 		try { 

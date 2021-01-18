@@ -48,7 +48,7 @@ public class ProductService {
 		return new ProductDTO(entity,entity.getCategories()); //retorna um objetodto com a entidade
 	}
 	
-	@Transactional
+	@Transactional(readOnly = true)
 	public ProductDTO insert(ProductDTO dto) {
 		Product entity = new Product();
 		copyDtoToEntity(dto,entity);
