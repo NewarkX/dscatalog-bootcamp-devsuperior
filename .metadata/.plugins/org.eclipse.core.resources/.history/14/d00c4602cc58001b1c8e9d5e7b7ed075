@@ -1,0 +1,17 @@
+package com.devsuperior.dscatalog.dto;
+
+import java.time.Instant;
+
+import javax.persistence.Column;
+
+public class ProductDTO {
+	private Long id;
+	private String name;
+	@Column(columnDefinition = "TEXT")
+	private String description;
+	private String price;
+	private String imgUrl;
+	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant date;
+}

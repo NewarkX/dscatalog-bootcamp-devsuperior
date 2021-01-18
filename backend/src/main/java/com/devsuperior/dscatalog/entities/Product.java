@@ -103,6 +103,10 @@ public class Product implements Serializable {
 	}
 
 
+	public Set<Category> getCategories() {
+		return categories;
+	}
+
 	public void setCategories(Set<Category> categories) {
 		this.categories = categories;
 	}
