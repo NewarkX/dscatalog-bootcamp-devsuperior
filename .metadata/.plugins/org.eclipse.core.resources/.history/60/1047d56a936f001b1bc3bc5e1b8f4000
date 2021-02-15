@@ -8,9 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,11 +24,7 @@ public class User implements Serializable {
 	private String email;
 	private String password;
 	
-	@ManyToMany
-	@JoinTable(name="tb_user_role", //nome da tabela associativa
-			joinColumns = @JoinColumn(name = "user_id"),  //pega a primary key da propria classe que esta
-			inverseJoinColumns = @JoinColumn(name="role_id") //pega o tipo da colecao que no caso e category
-			)
+	
 	private Set<Role> roles = new HashSet<>();
 	
 	public User() {}

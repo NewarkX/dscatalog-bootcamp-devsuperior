@@ -28,9 +28,9 @@ public class User implements Serializable {
 	private String password;
 	
 	@ManyToMany
-	@JoinTable(name="tb_user_role", //nome da tabela associativa
-			joinColumns = @JoinColumn(name = "user_id"),  //pega a primary key da propria classe que esta
-			inverseJoinColumns = @JoinColumn(name="role_id") //pega o tipo da colecao que no caso e category
+	@JoinTable(name="tb_product_category", //nome da tabela associativa
+			joinColumns = @JoinColumn(name = "product_id"),  //pega a primary key da propria classe que esta
+			inverseJoinColumns = @JoinColumn(name="category_id") //pega o tipo da colecao que no caso e category
 			)
 	private Set<Role> roles = new HashSet<>();
 	
