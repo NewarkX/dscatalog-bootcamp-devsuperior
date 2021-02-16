@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,10 +26,11 @@ public class User implements Serializable {
 	private Long id;
 	private String firstName;
 	private String lastName;
+	@Column(unique = true)
 	private String email;
 	private String password;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER) //traz o usuarios com as roles
 	@JoinTable(name="tb_user_role", //nome da tabela associativa
 			joinColumns = @JoinColumn(name = "user_id"),  //pega a primary key da propria classe que esta
 			inverseJoinColumns = @JoinColumn(name="role_id") //pega o tipo da colecao que no caso e category

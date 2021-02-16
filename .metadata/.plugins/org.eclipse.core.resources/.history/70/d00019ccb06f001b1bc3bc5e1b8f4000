@@ -1,0 +1,18 @@
+package com.devsuperior.dscatalog.dto;
+
+public class RoleDTO {
+	private Long id;
+	private String authority;
+	
+	public RoleDTO() {}
+
+	public RoleDTO(Long id, String authority) {
+		super();
+		this.id = id;
+		this.authority = authority;
+	}
+	
+	
+}
+
+
