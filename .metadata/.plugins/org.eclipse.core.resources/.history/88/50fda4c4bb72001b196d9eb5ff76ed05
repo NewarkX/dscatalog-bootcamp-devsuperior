@@ -20,12 +20,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Value("${security.oauth2.client.client-id}")
 	private String clientId;
 	
-	@Value("${security.oauth2.client.client-secret}")
-	private String clientSecret;
-	
-	@Value("${jwt.duration}")
-	private Integer jwtDuration;
-	
 	@Autowired
 	private BCryptPasswordEncoder passwordEnconder;
 	
@@ -46,11 +40,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory()
-		.withClient(clientId)
-		.secret(passwordEnconder.encode(clientSecret))
+		.withClient("dscatalog")
+		.secret(passwordEnconder.encode("dscatalog123"))
 		.scopes("read","write")
 		.authorizedGrantTypes("password")
-		.accessTokenValiditySeconds(jwtDuration);
+		.accessTokenValiditySeconds(86400);
 	}
 
 	@Override
