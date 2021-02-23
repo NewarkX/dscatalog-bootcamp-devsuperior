@@ -1,6 +1,0 @@
-package com.devsuperior.dscatalog.dto;
-
-public class RoleDTO {
-	private Long id;
-	private String authority;
-}

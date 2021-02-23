@@ -35,8 +35,9 @@ public class ProductService {
 	//ele retorna uma lista do tipo stream entao e feita a conversao para lista 
 	
 	@Transactional(readOnly = true) //serve para manter a integridade do banco de dados,fazendo com que o jpa nao esteja aberto na camada de view
-	public Page<ProductDTO> findAllPaged( PageRequest pageRequest ){
-		Page<Product> list = repository.findAll(pageRequest);
+	public Page<ProductDTO> findAllPaged(Long categoryId, PageRequest pageRequest ){
+		Category category = (categoryId == 0) ? null : categoryRepository.getOne(categoryId); //se categoryId =0 retorna null senao retorna o outro valor
+		Page<Product> list = repository.find(category,pageRequest);
 		return list.map(x -> new ProductDTO(x));
 	}
 
