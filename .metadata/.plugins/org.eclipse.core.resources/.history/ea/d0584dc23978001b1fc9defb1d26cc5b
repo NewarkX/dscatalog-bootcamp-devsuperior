@@ -1,0 +1,11 @@
+package com.devsuperior.dscatalog.dto;
+
+public class UriDTO {
+	private String uri;
+	
+	public UriDTO() {}
+	
+	private UriDTO(String uri) {
+		this.uri=uri;
+	}
+}
